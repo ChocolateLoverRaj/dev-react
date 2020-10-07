@@ -1,0 +1,10 @@
+{
+    "private": true,
+    "type": "module",
+    "devDependencies": {
+        "@programmerraj/dev-react": "file:../.."
+    },
+    "dependencies": {
+        "dirname-filename-esm": "^1.0.1"
+    }
+}
