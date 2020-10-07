@@ -1,5 +1,5 @@
 {
-  "name": "dev-react",
+  "name": "@programmerraj/dev-react",
   "version": "0.1.0",
   "description": "Develop React components and websites.",
   "main": "lib/index.js",
