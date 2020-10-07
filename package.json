@@ -1,0 +1,37 @@
+{
+  "name": "dev-react",
+  "version": "0.1.0",
+  "description": "Develop React components and websites.",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "lint": "standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChocolateLoverRaj/dev-react.git"
+  },
+  "keywords": [
+    "dev",
+    "react",
+    "develop",
+    "test",
+    "build",
+    "components",
+    "webpages",
+    "server",
+    "pages"
+  ],
+  "author": "Rajas Paranjpe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ChocolateLoverRaj/dev-react/issues"
+  },
+  "homepage": "https://github.com/ChocolateLoverRaj/dev-react#readme",
+  "devDependencies": {
+    "jest": "^26.5.2",
+    "standard": "^14.3.4"
+  }
+}
