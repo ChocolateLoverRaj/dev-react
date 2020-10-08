@@ -7,8 +7,8 @@
   "type": "module",
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "lint": "standard",
-    "test:live": "node --experimental-import-meta-resolve test/dev-react/index.js"
+    "lint": "standard --fix",
+    "start": "node --experimental-import-meta-resolve test/dev-react/index.js"
   },
   "repository": {
     "type": "git",
