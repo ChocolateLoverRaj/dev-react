@@ -7,4 +7,6 @@ const __dirname = dirname(import.meta)
 
 const pagesPath = join(__dirname, './pages/')
 
-devReact(pagesPath)
+const outputPath = join(__dirname, './dev/')
+
+devReact(pagesPath, outputPath)

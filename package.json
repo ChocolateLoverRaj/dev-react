@@ -8,7 +8,9 @@
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:ci": "node --experimental-vm-modules node_modules/jest/bin/jest.js --ci",
-    "lint": "standard --fix",
+    "test:update": "node --experimental-vm-modules node_modules/jest/bin/jest.js -u",
+    "test:actions": "npm run test:ci && npm run lint",
+    "lint": "standard",
     "start": "node --experimental-import-meta-resolve test/dev-react/index.js"
   },
   "repository": {
@@ -37,6 +39,7 @@
     "standard": "^14.3.4"
   },
   "dependencies": {
-    "chokidar": "^3.4.2"
+    "chokidar": "^3.4.2",
+    "fs-extra": "^9.0.1"
   }
 }
