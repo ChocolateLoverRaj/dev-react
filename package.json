@@ -12,6 +12,7 @@
     "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
     "test:actions": "npm run test:ci && npm run lint",
     "lint": "standard",
+    "lint:fix": "standard --fix",
     "start": "node --experimental-import-meta-resolve test/dev-react/index.js"
   },
   "repository": {
@@ -42,7 +43,6 @@
   "dependencies": {
     "@babel/core": "^7.11.6",
     "@babel/preset-react": "^7.10.4",
-    "babel-plugin-module-resolver": "^4.0.0",
     "chokidar": "^3.4.2",
     "fs-extra": "^9.0.1",
     "react": "^16.13.1"

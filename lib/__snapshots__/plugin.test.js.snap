@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`transform 1`] = `
+"import React from '/scripts/react.js';
+import { a, b } from 'something-else';
+import * as m from 'some-stuff';
+import keepDoubleQuotes from \\"d-quotes\\";
+import keepSingleQuotes from 's-quotes';
+import DoNotChange from 'unchanged';"
+`;
