@@ -1,7 +1,7 @@
 import React from 'react'
 
 class App extends React.Component {
-  render() {
+  render () {
     return <h1>Hi</h1>
   }
 }
