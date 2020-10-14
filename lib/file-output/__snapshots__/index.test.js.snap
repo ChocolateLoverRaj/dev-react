@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`error builder 1`] = `[Error: Builder error: Error: A build error.]`;
+
+exports[`error write 1`] = `[Error: Error writing file: Error: Error writing file.]`;

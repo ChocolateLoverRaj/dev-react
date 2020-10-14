@@ -8,8 +8,14 @@ const EventEmitter = require('eventemitter3')
 
 const frozen = new Set()
 const errorFiles = new Set()
+fs._errorFiles = errorFiles
 const files = new Map()
 fs._files = files
+fs._reset = () => {
+  frozen.clear()
+  errorFiles.clear()
+  files.clear()
+}
 
 const mock = new EventEmitter()
   .on('freeze', filename => {
@@ -22,9 +28,7 @@ const mock = new EventEmitter()
     errorFiles.add(filename)
   })
   .on('reset', () => {
-    frozen.clear()
-    errorFiles.clear()
-    files.clear()
+    fs._reset()
   })
 fs._mock = mock
 
