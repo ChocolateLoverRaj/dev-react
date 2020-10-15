@@ -7,6 +7,7 @@ const fs = jest.createMockFromModule('fs/promises')
 const EventEmitter = require('eventemitter3')
 
 const frozen = new Set()
+fs._frozen = frozen
 const errorFiles = new Set()
 fs._errorFiles = errorFiles
 const files = new Map()
