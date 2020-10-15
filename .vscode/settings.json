@@ -3,5 +3,6 @@
         "programmerraj"
     ],
     "editor.tabSize": 2,
-    "javascript.format.insertSpaceAfterConstructor": true
+    "javascript.format.insertSpaceAfterConstructor": true,
+    "javascript.format.insertSpaceBeforeFunctionParenthesis": true
 }

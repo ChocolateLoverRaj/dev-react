@@ -36,7 +36,7 @@ fs._mock = mock
 const onceUnfrozen = filename => new Promise((resolve, reject) => {
   const handler = f => {
     if (f === filename) {
-      mock.off(handler)
+      mock.off('unfreeze', handler)
       resolve()
     }
   }
