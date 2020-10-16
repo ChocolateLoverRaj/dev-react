@@ -4,80 +4,46 @@
 
 const fs = jest.createMockFromModule('fs/promises')
 
+const files = require('../../test-lib/files')
 const EventEmitter = require('eventemitter3')
 
-const frozen = new Set()
-fs._frozen = frozen
-const errorFiles = new Set()
-fs._errorFiles = errorFiles
-const files = new Map()
-fs._files = files
+fs._frozen = new Set()
+fs._errorFiles = new Set()
 fs._reset = () => {
-  frozen.clear()
-  errorFiles.clear()
+  fs._frozen.clear()
+  fs._errorFiles.clear()
   files.clear()
 }
 
-const mock = new EventEmitter()
-  .on('freeze', filename => {
-    frozen.add(filename)
-  })
+fs._mock = new EventEmitter()
   .on('unfreeze', filename => {
-    frozen.delete(filename)
+    fs._frozen.delete(filename)
   })
-  .on('throw', filename => {
-    errorFiles.add(filename)
-  })
-  .on('reset', () => {
-    fs._reset()
-  })
-fs._mock = mock
 
-const onceUnfrozen = filename => new Promise((resolve, reject) => {
+const onceUnfrozen = filename => new Promise(resolve => {
   const handler = f => {
     if (f === filename) {
-      mock.off('unfreeze', handler)
+      fs._mock.off('unfreeze', handler)
       resolve()
     }
   }
-  mock.on('unfreeze', handler)
+  fs._mock.on('unfreeze', handler)
 })
 
 fs.writeFile = async (filename, content) => {
-  if (errorFiles.has(filename)) {
+  if (fs._errorFiles.has(filename)) {
     throw new Error('Error writing file.')
   }
   const write = () => {
     files.set(filename, content)
-    mock.emit('wrote', filename, content)
+    fs._mock.emit('wrote', filename, content)
   }
-  if (frozen.has(filename)) {
+  if (fs._frozen.has(filename)) {
     await onceUnfrozen(filename)
     write()
   } else {
     write()
   }
-}
-
-fs.readFile = async filename => {
-  if (errorFiles.has(filename)) {
-    throw new Error('Error reading file.')
-  }
-  const read = () => {
-    mock.emit('read', filename)
-    return files.get(filename)
-  }
-  if (frozen.has(filename)) {
-    await onceUnfrozen(filename)
-    return read()
-  } else {
-    return read()
-  }
-}
-
-fs.unlink = async filename => {
-  files.delete(filename)
-  mock.emit('unlinked', filename)
 }
 
 module.exports = fs
