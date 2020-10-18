@@ -46,4 +46,16 @@ fs.writeFile = async (filename, content) => {
   }
 }
 
+fs.unlink = async filename => {
+  if (fs._errorFiles.has(filename)) {
+    throw new Error('Error unlinking file.')
+  }
+  if (!files.has(filename)) {
+    const err = new Error('Error unlinking file. File doesn\'t exist.')
+    err.code = 'ENOENT'
+    throw err
+  }
+  files.delete(filename)
+}
+
 module.exports = fs
