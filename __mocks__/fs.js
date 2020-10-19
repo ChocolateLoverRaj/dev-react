@@ -1,1 +1,1 @@
-module.exports = require('../test-lib/mock-fs/_cjs/index')
+module.exports = require('../test-lib/mock-fs/_cjs/index').default
