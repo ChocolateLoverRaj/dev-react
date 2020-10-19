@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`constructing 1`] = `
-"something didn't work
-
-Original: This is for snapshot testing to be consistent."
-`;
