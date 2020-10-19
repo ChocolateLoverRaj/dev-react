@@ -9,6 +9,7 @@ jest.mock('fs')
 afterEach(() => {
   files.clear()
 })
+afterEach(_reset)
 
 test('createReadStream', async () => {
   files.set('file', 'hi')
