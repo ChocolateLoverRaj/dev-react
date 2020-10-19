@@ -1,4 +1,3 @@
-// TODO: test this
 const chunks = stream => new Promise((resolve, reject) => {
   const chunks = []
   stream.on('data', data => {
