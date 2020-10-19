@@ -1,4 +1,4 @@
-/* global jest, test */
+/* global jest, afterEach, test, expect, describe */
 
 import { writeFile, unlink, _frozen, _errorFiles, _reset, _mock } from 'fs/promises'
 import files from '../files/index.js'
