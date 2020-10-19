@@ -17,49 +17,56 @@ const cjsPackageJson = {
 const rootDir = join(__dirname, '../')
 const transform = async dirs => {
   const promises = [];
-  [...dirs]
-    .map(dir => join(rootDir, dir))
-    .map(async dir => {
-      const indexPath = join(dir, 'index.js')
-      const testPath = join(dir, 'mjs-test.js')
-      const cjsDir = join(dir, '_cjs')
-      const packageJsonPath = join(cjsDir, 'package.json')
-      const cjsIndexPath = join(cjsDir, 'index.js')
-      const cjsTestPath = join(cjsDir, 'index.test.js')
 
-      const transformer = from => {
-        if (from === './index.js') {
-          return from
-        }
-        if (from.startsWith('.')) {
-          const ref = resolve(dir, from)
-          const cjsRef = join(dirname(ref), '_cjs', 'index.js')
-          return relative(cjsDir, cjsRef)
-        }
+  const transformDir = async (transformTests, dir) => {
+    const indexPath = join(dir, 'index.js')
+    const testPath = join(dir, 'mjs-test.js')
+    const cjsDir = join(dir, '_cjs')
+    const packageJsonPath = join(cjsDir, 'package.json')
+    const cjsIndexPath = join(cjsDir, 'index.js')
+    const cjsTestPath = join(cjsDir, 'index.test.js')
 
+    const transformer = from => {
+      if (from === './index.js') {
         return from
       }
-      const transformFile = async file => (await babel.transformFileAsync(file, {
-        plugins: [
-          transformImports(transformer),
-          babelPluginTransformModules
-        ],
-        sourceMaps: 'inline',
-        sourceFileName: file
-      })).code
+      if (from.startsWith('.')) {
+        const ref = resolve(dir, from)
+        const refDir = dirname(ref)
+        if (!dirs.has(refDir)) {
+          dirs.add(refDir)
+          promises.push(transformDir(false, refDir))
+        }
+        const cjsRef = join(refDir, '_cjs', 'index.js')
+        return relative(cjsDir, cjsRef)
+      }
+      return from
+    }
+    const transformFile = async file => (await babel.transformFileAsync(file, {
+      plugins: [
+        transformImports(transformer),
+        babelPluginTransformModules
+      ],
+      sourceMaps: 'inline',
+      sourceFileName: file
+    })).code
 
-      const indexCode = transformFile(indexPath)
-      const testCode = transformFile(testPath)
+    const indexCode = transformFile(indexPath)
+    const testCode = transformTests ? transformFile(testPath) : null
 
-      const writeCode = async (path, codePromise) => await writeFile(path, await codePromise)
+    const writeCode = async (path, codePromise) => await writeFile(path, await codePromise)
 
-      await fse.ensureDir(cjsDir)
-      await Promise.all([
-        fse.writeJson(packageJsonPath, cjsPackageJson),
-        writeCode(cjsIndexPath, indexCode),
-        writeCode(cjsTestPath, testCode)
-      ])
-    })
+    await fse.ensureDir(cjsDir)
+    await Promise.all([
+      fse.writeJson(packageJsonPath, cjsPackageJson),
+      writeCode(cjsIndexPath, indexCode),
+      transformTests ? writeCode(cjsTestPath, testCode) : null
+    ])
+  }
+
+  [...dirs]
+    .map(dir => join(rootDir, dir))
+    .map(transformDir.bind(undefined, true))
     .forEach(promise => {
       promises.push(promise)
     })
@@ -70,6 +77,8 @@ console.log('Building...')
 console.time('build')
 transform(new Set()
   .add('lib/file-output')
+  .add('test-lib/mock-fs')
+  .add('test-lib/mock-fs-promises')
 )
   .then(console.timeEnd.bind(undefined, 'build'))
   .catch(e => {
