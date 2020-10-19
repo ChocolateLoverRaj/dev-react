@@ -2,11 +2,11 @@
 
 // Mocker for fs
 
-const fs = jest.createMockFromModule('fs')
-
 import files from '../files/index.js'
 import tick from '../tick/index.js'
 import { Readable, PassThrough } from 'stream'
+
+const fs = jest.createMockFromModule('fs')
 
 fs._readStreamErrorFiles = new Set()
 

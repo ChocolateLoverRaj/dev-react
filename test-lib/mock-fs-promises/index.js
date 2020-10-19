@@ -2,10 +2,10 @@
 
 // Mocker for fs/promises
 
-const fs = jest.createMockFromModule('fs/promises')
-
 import files from '../../test-lib/files/index.js'
 import EventEmitter from 'eventemitter3'
+
+const fs = jest.createMockFromModule('fs/promises')
 
 fs._frozen = new Set()
 fs._errorFiles = new Set()

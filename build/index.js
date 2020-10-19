@@ -16,7 +16,7 @@ const cjsPackageJson = {
 }
 const rootDir = join(__dirname, '../')
 const transform = async dirs => {
-  const promises = [];
+  const promises = []
 
   const transformDir = async (transformTests, dir) => {
     const indexPath = join(dir, 'index.js')
