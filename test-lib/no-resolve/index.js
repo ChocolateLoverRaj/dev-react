@@ -7,4 +7,4 @@ const noResolve = (promise, timeout) => new Promise((resolve, reject) => {
   })
 })
 
-module.exports = noResolve
+export default noResolve

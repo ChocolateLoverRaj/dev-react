@@ -5,4 +5,4 @@ const unsafeOnce = (emitter, event) => new Promise(resolve => {
   })
 })
 
-module.exports = unsafeOnce
+export default unsafeOnce

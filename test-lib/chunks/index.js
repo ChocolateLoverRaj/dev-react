@@ -9,4 +9,4 @@ const chunks = stream => new Promise((resolve, reject) => {
   stream.on('error', reject)
 })
 
-module.exports = chunks
+export default chunks

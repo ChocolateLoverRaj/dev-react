@@ -4,7 +4,7 @@ import babel from '@babel/core'
 import { dirname as getDirname } from 'dirname-filename-esm'
 import transformModules from '@babel/plugin-transform-modules-commonjs'
 import fse from 'fs-extra'
-import { join } from 'path'
+import { join, relative, resolve, dirname } from 'path'
 import { writeFile } from 'fs/promises'
 
 const __dirname = getDirname(import.meta)
@@ -16,7 +16,8 @@ const cjsPackageJson = {
 }
 const rootDir = join(__dirname, '../')
 const transform = async dirs => {
-  await Promise.all(dirs
+  const promises = [];
+  [...dirs]
     .map(dir => join(rootDir, dir))
     .map(async dir => {
       const indexPath = join(dir, 'index.js')
@@ -30,12 +31,12 @@ const transform = async dirs => {
         if (from === './index.js') {
           return from
         }
-        if (from.startsWith('./')) {
-          return `.${from}`
+        if (from.startsWith('.')) {
+          const ref = resolve(dir, from)
+          const cjsRef = join(dirname(ref), '_cjs', 'index.js')
+          return relative(cjsDir, cjsRef)
         }
-        if (from.startsWith('../')) {
-          return `../${from}`
-        }
+
         return from
       }
       const transformFile = async file => (await babel.transformFileAsync(file, {
@@ -59,14 +60,17 @@ const transform = async dirs => {
         writeCode(cjsTestPath, testCode)
       ])
     })
-  )
+    .forEach(promise => {
+      promises.push(promise)
+    })
+  await Promise.all(promises)
 }
 
 console.log('Building...')
 console.time('build')
-transform([
-  'lib/file-output'
-])
+transform(new Set()
+  .add('lib/file-output')
+)
   .then(console.timeEnd.bind(undefined, 'build'))
   .catch(e => {
     console.error(e)

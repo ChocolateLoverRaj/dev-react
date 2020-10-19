@@ -1,7 +1,7 @@
 /* global test, expect */
 
-const chunks = require('./chunks')
-const { Readable } = require('stream')
+import chunks from './index.js'
+import { Readable } from 'stream'
 
 const theChunks = ['a', 'b', 'c']
 

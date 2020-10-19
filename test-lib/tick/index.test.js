@@ -1,6 +1,6 @@
 /* global test, expect */
 
-const tick = require('./tick')
+import tick from './index.js'
 
 test('with promises', async () => {
   const a = 'Promise.resolve()'

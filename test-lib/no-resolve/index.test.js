@@ -1,6 +1,6 @@
 /* global test, expect */
 
-const noResolve = require('./no-resolve')
+import noResolve from './index.js'
 
 test('doesn\'t resolve', async () => {
   const testPromise = new Promise(() => undefined)

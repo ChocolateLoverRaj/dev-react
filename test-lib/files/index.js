@@ -1,3 +1,3 @@
 const files = new Map()
 
-module.exports = files
+export default files

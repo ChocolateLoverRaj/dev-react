@@ -1,7 +1,7 @@
 /* global test, expect */
 
-const unsafeOnce = require('./unsafe-once')
-const { once, EventEmitter } = require('events')
+import unsafeOnce from './index.js'
+import { once, EventEmitter } from 'events'
 
 test('without error', async () => {
   const emitter = new EventEmitter()

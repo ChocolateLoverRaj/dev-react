@@ -4,4 +4,4 @@ const tick = () => new Promise(resolve => {
   process.nextTick(resolve)
 })
 
-module.exports = tick
+export default tick

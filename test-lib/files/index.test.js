@@ -1,6 +1,6 @@
 /* global test, expect */
 
-const files = require('./files')
+import files from './index.js'
 
 test('is a Map', () => {
   expect(Object.getPrototypeOf(files)).toBe(Map.prototype)
