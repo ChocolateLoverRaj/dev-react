@@ -25,9 +25,28 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Npm Ci
+    - name: Install Packages
       run: npm ci
+    - name: Build
+      run: npm run build
     - name: Test
-      run: npm test
+      run: npm run test:ci
+  lint:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14]
+
+    steps:
+    - name: GitHub Actions Checkout
+      uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install Packages
+      run: npm ci
     - name: Lint
       run: npm run lint

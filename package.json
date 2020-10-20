@@ -6,11 +6,12 @@
   "types": "lib/index.d.ts",
   "type": "module",
   "scripts": {
+    "build": "node build/index",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:ci": "node --experimental-vm-modules node_modules/jest/bin/jest.js --ci",
     "test:update": "node --experimental-vm-modules node_modules/jest/bin/jest.js -u",
     "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
-    "test:actions": "npm run test:ci && npm run lint",
+    "test:actions": "npm run test:ci & npm run lint",
     "lint": "standard",
     "lint:fix": "standard --fix",
     "start": "node --experimental-import-meta-resolve test/dev-react/index.js"
@@ -37,6 +38,8 @@
   },
   "homepage": "https://github.com/ChocolateLoverRaj/dev-react#readme",
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.12.1",
+    "dirname-filename-esm": "^1.0.2",
     "jest": "^26.5.2",
     "standard": "^14.3.4"
   },
