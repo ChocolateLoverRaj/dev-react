@@ -76,6 +76,7 @@ const transform = async dirs => {
 console.log('Building...')
 console.time('build')
 transform(new Set()
+  .add('lib/index')
   .add('lib/file-output')
   .add('test-lib/mock-fs')
   .add('test-lib/mock-fs-promises')
