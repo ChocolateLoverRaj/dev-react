@@ -7,3 +7,5 @@ exports[`errors bad inputDir 2`] = `"Error normalizing inputDir: TypeError: p.re
 exports[`errors bad inputDir 3`] = `"Error normalizing inputDir: TypeError: p.replace is not a function"`;
 
 exports[`errors no new 1`] = `"Class constructor DevReact cannot be invoked without 'new'"`;
+
+exports[`errors start 1`] = `[Error: this.inputDir does not exist.]`;
