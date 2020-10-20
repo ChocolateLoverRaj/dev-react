@@ -5,6 +5,8 @@
 import files from '../../test-lib/files/index.js'
 import EventEmitter from 'eventemitter3'
 
+// TODO: Update tests to be specific to files and dirs
+// TODO: Update fs mocks to check if file is file or dir
 const fs = jest.createMockFromModule('fs/promises')
 
 fs._frozen = new Set()
