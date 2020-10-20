@@ -1,3 +1,3 @@
-const files = new Map()
+const topDir = new Map()
 
-export default files
+export default topDir
