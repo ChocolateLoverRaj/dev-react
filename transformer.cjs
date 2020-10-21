@@ -1,5 +1,5 @@
 const { transformSync } = require('@babel/core')
-const { join, relative } = require('path')
+const { join, relative, dirname } = require('path')
 
 const mocksPath = join(__dirname, './__mocks__')
 
@@ -8,9 +8,9 @@ module.exports = {
     const transformer = path => {
       switch (path) {
         case 'fs':
-          return relative(filename, join(mocksPath, 'fs.js'))
+          return relative(dirname(filename), join(mocksPath, 'fs.js'))
         case 'fs/promises':
-          return relative(filename, join(mocksPath, 'fs-promises.js'))
+          return relative(dirname(filename), join(mocksPath, 'fs-promises.js'))
         default:
           return path
       }
