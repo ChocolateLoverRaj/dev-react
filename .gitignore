@@ -1,7 +1,5 @@
 # Compiled to cjs
-**/_cjs/index.js
-**/_cjs/index.test.js
-**/_cjs/package.json
+_cjs/**/*.js
 
 # Dev
 test/dev-react/dev/

@@ -1,6 +1,6 @@
 /* global test, expect */
 
-import chunks from './index.js'
+import chunks from './chunks.js'
 import { Readable } from 'stream'
 
 const theChunks = ['a', 'b', 'c']
