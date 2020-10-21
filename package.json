@@ -6,7 +6,7 @@
   "types": "lib/index.d.ts",
   "type": "module",
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --clearCache",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:ci": "node --experimental-vm-modules node_modules/jest/bin/jest.js --ci",
     "test:update": "node --experimental-vm-modules node_modules/jest/bin/jest.js -u",
     "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
