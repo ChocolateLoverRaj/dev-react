@@ -7,6 +7,8 @@ module.exports = {
   process (src, filename) {
     const transformer = path => {
       switch (path) {
+        // TODO: move this file into a dir
+        // TODO: Use a map of different mocks instead of a big switch/case
         case 'fs':
           return relative(dirname(filename), join(mocksPath, 'fs.js'))
         case 'fs/promises':
