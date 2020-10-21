@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`_errorFiles unlink 1`] = `[Error: Error unlinking file.]`;
-
-exports[`_errorFiles writeFile 1`] = `[Error: Error writing file.]`;
-
-exports[`ENOENT 1`] = `[Error: Error unlinking file. File doesn't exist.]`;
