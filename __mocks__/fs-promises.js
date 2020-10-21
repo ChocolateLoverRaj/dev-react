@@ -2,43 +2,41 @@
 
 // Mocker for fs/promises
 
-import files from '../../test-lib/files/index.js'
+import files from '../test-lib/files.js'
 import EventEmitter from 'eventemitter3'
 
-const fs = jest.createMockFromModule('fs/promises')
-
-fs._frozen = new Set()
-fs._errorFiles = new Set()
-fs._reset = () => {
-  fs._frozen.clear()
-  fs._errorFiles.clear()
+export const _frozen = new Set()
+export const _errorFiles = new Set()
+export const _reset = () => {
+  _frozen.clear()
+  _errorFiles.clear()
   files.clear()
 }
 
-fs._mock = new EventEmitter()
+export const _mock = new EventEmitter()
   .on('unfreeze', filename => {
-    fs._frozen.delete(filename)
+    _frozen.delete(filename)
   })
 
 const onceUnfrozen = filename => new Promise(resolve => {
   const handler = f => {
     if (f === filename) {
-      fs._mock.off('unfreeze', handler)
+      _mock.off('unfreeze', handler)
       resolve()
     }
   }
-  fs._mock.on('unfreeze', handler)
+  _mock.on('unfreeze', handler)
 })
 
-fs.writeFile = async (filename, content) => {
-  if (fs._errorFiles.has(filename)) {
+export const writeFile = async (filename, content) => {
+  if (_errorFiles.has(filename)) {
     throw new Error('Error writing file.')
   }
   const write = () => {
     files.set(filename, content)
-    fs._mock.emit('wrote', filename, content)
+    _mock.emit('wrote', filename, content)
   }
-  if (fs._frozen.has(filename)) {
+  if (_frozen.has(filename)) {
     await onceUnfrozen(filename)
     write()
   } else {
@@ -46,8 +44,8 @@ fs.writeFile = async (filename, content) => {
   }
 }
 
-fs.unlink = async filename => {
-  if (fs._errorFiles.has(filename)) {
+export const unlink = async filename => {
+  if (_errorFiles.has(filename)) {
     throw new Error('Error unlinking file.')
   }
   if (!files.has(filename)) {
@@ -57,5 +55,3 @@ fs.unlink = async filename => {
   }
   files.delete(filename)
 }
-
-export default fs

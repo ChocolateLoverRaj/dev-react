@@ -41,6 +41,7 @@
     "@babel/plugin-transform-modules-commonjs": "^7.12.1",
     "dirname-filename-esm": "^1.0.2",
     "jest": "^26.5.2",
+    "rollup": "^2.32.1",
     "standard": "^14.3.4"
   },
   "dependencies": {

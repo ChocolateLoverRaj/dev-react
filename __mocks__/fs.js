@@ -2,20 +2,18 @@
 
 // Mocker for fs
 
-import files from '../files/index.js'
-import tick from '../tick/index.js'
+import files from '../test-lib/files.js'
+import tick from '../test-lib/tick.js'
 import { Readable, PassThrough } from 'stream'
 
-const fs = jest.createMockFromModule('fs')
+export const _readStreamErrorFiles = new Set()
 
-fs._readStreamErrorFiles = new Set()
-
-fs._reset = () => {
-  fs._readStreamErrorFiles.clear()
+export const _reset = () => {
+  _readStreamErrorFiles.clear()
 }
 
-fs.createReadStream = path => {
-  if (fs._readStreamErrorFiles.has(path)) {
+export const createReadStream = path => {
+  if (_readStreamErrorFiles.has(path)) {
     const stream = new PassThrough()
     tick().then(() => {
       stream.destroy(new Error('Error creating a read stream.'))
@@ -28,5 +26,3 @@ fs.createReadStream = path => {
     throw new Error('File doesn\'t exist')
   }
 }
-
-export default fs

@@ -1,10 +1,8 @@
 /* global jest, afterEach, test, expect */
 
-import { createReadStream, _readStreamErrorFiles, _reset } from 'fs'
-import files from '../files/index.js'
-import chunks from '../chunks/index.js'
-
-jest.mock('fs')
+import { createReadStream, _readStreamErrorFiles, _reset } from './fs.js'
+import files from '../test-lib/files.js'
+import chunks from '../test-lib/chunks.js'
 
 afterEach(() => {
   files.clear()
@@ -28,5 +26,7 @@ test('_reset', () => {
 })
 
 test('non-existent file', async () => {
-  expect(createReadStream.bind(undefined, 'file')).toThrowErrorMatchingSnapshot()
+  expect(() => {
+    createReadStream('file')
+  }).toThrowErrorMatchingSnapshot()
 })
