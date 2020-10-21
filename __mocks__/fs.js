@@ -1,7 +1,4 @@
-/* global jest */
-
 // Mocker for fs
-
 import files from '../test-lib/files.js'
 import tick from '../test-lib/tick.js'
 import { Readable, PassThrough } from 'stream'

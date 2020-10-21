@@ -1,4 +1,4 @@
-/* global jest, afterEach, test, expect */
+/* global afterEach, test, expect */
 
 import { createReadStream, _readStreamErrorFiles, _reset } from './fs.js'
 import files from '../test-lib/files.js'

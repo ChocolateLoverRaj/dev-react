@@ -1,7 +1,4 @@
-/* global jest */
-
 // Mocker for fs/promises
-
 import files from '../test-lib/files.js'
 import EventEmitter from 'eventemitter3'
 
