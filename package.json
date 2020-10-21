@@ -6,7 +6,6 @@
   "types": "lib/index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "node build/index",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:ci": "node --experimental-vm-modules node_modules/jest/bin/jest.js --ci",
     "test:update": "node --experimental-vm-modules node_modules/jest/bin/jest.js -u",
@@ -41,6 +40,7 @@
     "@babel/plugin-transform-modules-commonjs": "^7.12.1",
     "dirname-filename-esm": "^1.0.2",
     "jest": "^26.5.2",
+    "rollup": "^2.32.1",
     "standard": "^14.3.4"
   },
   "dependencies": {

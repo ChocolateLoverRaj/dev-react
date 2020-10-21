@@ -1,6 +1,6 @@
 /* global test, expect */
 
-import unsafeOnce from './index.js'
+import unsafeOnce from './unsafe-once.js'
 import { once, EventEmitter } from 'events'
 
 test('without error', async () => {

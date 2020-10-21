@@ -1,6 +1,6 @@
 /* global afterEach, describe, test, expect */
 
-import { File, NormalFile, Dir, topDir, getFile, reset } from './index.js'
+import { File, NormalFile, Dir, topDir, getFile, reset } from './files.js'
 
 afterEach(reset)
 

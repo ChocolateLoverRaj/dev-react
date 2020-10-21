@@ -1,11 +1,9 @@
-/* global jest, afterEach, test, expect, describe */
+/* global afterEach, test, expect, describe */
 
-import { writeFile, unlink, _frozen, _errorFiles, _reset, _mock } from 'fs/promises'
-import files from '../files/index.js'
-import tick from '../tick/index.js'
-import noResolve from '../no-resolve/index.js'
-
-jest.mock('fs/promises')
+import { writeFile, unlink, _frozen, _errorFiles, _reset, _mock } from './fs-promises.js'
+import files from '../test-lib/files.js'
+import tick from '../test-lib/tick.js'
+import noResolve from '../test-lib/no-resolve.js'
 
 afterEach(() => {
   files.clear()
