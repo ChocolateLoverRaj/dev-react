@@ -1,22 +1,14 @@
+const mocks = require('./mocks.cjs')
 const { transformSync } = require('@babel/core')
 const { join, relative, dirname } = require('path')
 
-const mocksPath = join(__dirname, './__mocks__')
+const mocksPath = join(__dirname, '../__mocks__')
 
 module.exports = {
   process (src, filename) {
-    const transformer = path => {
-      switch (path) {
-        // TODO: move this file into a dir
-        // TODO: Use a map of different mocks instead of a big switch/case
-        case 'fs':
-          return relative(dirname(filename), join(mocksPath, 'fs.js'))
-        case 'fs/promises':
-          return relative(dirname(filename), join(mocksPath, 'fs-promises.js'))
-        default:
-          return path
-      }
-    }
+    const transformer = path => mocks.has(path) ?
+      relative(dirname(filename), join(mocksPath, mocks.get(path))) :
+      path
 
     return transformSync(src, {
       plugins: [{
