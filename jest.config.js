@@ -1,5 +1,5 @@
 export default {
   transform: {
-    '\\.js': './transformer.cjs'
+    '\\.js': './jest/transformer.cjs'
   }
 }
