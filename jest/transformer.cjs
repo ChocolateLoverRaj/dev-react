@@ -6,9 +6,9 @@ const mocksPath = join(__dirname, '../__mocks__')
 
 module.exports = {
   process (src, filename) {
-    const transformer = path => mocks.has(path) ?
-      relative(dirname(filename), join(mocksPath, mocks.get(path))) :
-      path
+    const transformer = path => mocks.has(path)
+      ? relative(dirname(filename), join(mocksPath, mocks.get(path)))
+      : path
 
     return transformSync(src, {
       plugins: [{
