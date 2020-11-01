@@ -1,5 +1,6 @@
 // Mocker for fs/promises
-import { NormalFile, reset, unlinkFile, setFile } from '../test-lib/files.js'
+import { NormalFile, reset, unlinkFile, setFile, getFile } from '../test-lib/files.js'
+import { constants } from './fs.js'
 import EventEmitter from 'eventemitter3'
 
 export const _frozen = new Set()
@@ -24,6 +25,14 @@ const onceUnfrozen = filename => new Promise(resolve => {
   }
   _mock.on('unfreeze', handler)
 })
+
+export const access = async (filename, permissions) => {
+  const file = getFile(filename)
+  const filePermissions = file.canRead * constants.R_OK | file.canWrite * constants.W_OK
+  if (permissions !== permissions & filePermissions) {
+    throw new Error('Bad permissions.')
+  }
+}
 
 export const writeFile = async (filename, content) => {
   if (_errorFiles.has(filename)) {
