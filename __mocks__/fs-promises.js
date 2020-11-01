@@ -1,15 +1,13 @@
 // Mocker for fs/promises
-import files from '../test-lib/files.js'
+import { NormalFile, reset, unlinkFile, setFile } from '../test-lib/files.js'
 import EventEmitter from 'eventemitter3'
 
-// TODO: Update tests to be specific to files and dirs
-// TODO: Update fs mocks to check if file is file or dir
 export const _frozen = new Set()
 export const _errorFiles = new Set()
 export const _reset = () => {
   _frozen.clear()
   _errorFiles.clear()
-  files.clear()
+  reset()
 }
 
 export const _mock = new EventEmitter()
@@ -32,7 +30,7 @@ export const writeFile = async (filename, content) => {
     throw new Error('Error writing file.')
   }
   const write = () => {
-    files.set(filename, content)
+    setFile(filename, new NormalFile(content))
     _mock.emit('wrote', filename, content)
   }
   if (_frozen.has(filename)) {
@@ -47,10 +45,5 @@ export const unlink = async filename => {
   if (_errorFiles.has(filename)) {
     throw new Error('Error unlinking file.')
   }
-  if (!files.has(filename)) {
-    const err = new Error('Error unlinking file. File doesn\'t exist.')
-    err.code = 'ENOENT'
-    throw err
-  }
-  files.delete(filename)
+  unlinkFile(filename)
 }

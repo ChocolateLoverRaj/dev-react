@@ -1,24 +1,24 @@
 /* global afterEach, test, expect, describe */
 
 import { writeFile, unlink, _frozen, _errorFiles, _reset, _mock } from './fs-promises.js'
-import files from '../test-lib/files.js'
+import { reset, getFile, setFile, NormalFile } from '../test-lib/files.js'
 import tick from '../test-lib/tick.js'
 import noResolve from '../test-lib/no-resolve.js'
 
 afterEach(() => {
-  files.clear()
+  reset()
 })
 afterEach(_reset)
 
 test('writeFile', async () => {
   await writeFile('file', 'data')
-  expect(files.get('file')).toBe('data')
+  expect(getFile('file').content).toBe('data')
 })
 
 test('unlink', async () => {
-  files.set('file', 'something')
+  setFile('file', new NormalFile('something'))
   await unlink('file')
-  expect(files.has('file')).toBe(false)
+  expect(() => { getFile('file') }).toThrowError()
 })
 
 test('freezing', async () => {
@@ -28,7 +28,7 @@ test('freezing', async () => {
     _mock.emit('unfreeze', 'file')
   })()
   await noResolve(writeFile('file', 'data'), freezePromise)
-  expect(files.get('file')).toBe('data')
+  expect(getFile('file').content).toBe('data')
 })
 
 describe('_errorFiles', () => {

@@ -1,16 +1,14 @@
 /* global afterEach, test, expect */
 
 import { createReadStream, _readStreamErrorFiles, _reset } from './fs.js'
-import files from '../test-lib/files.js'
+import { reset, setFile, NormalFile } from '../test-lib/files.js'
 import chunks from '../test-lib/chunks.js'
 
-afterEach(() => {
-  files.clear()
-})
+afterEach(reset)
 afterEach(_reset)
 
 test('createReadStream', async () => {
-  files.set('file', 'hi')
+  setFile('file', new NormalFile('hi'))
   expect(await chunks(createReadStream('file'))).toStrictEqual(['h', 'i'])
 })
 

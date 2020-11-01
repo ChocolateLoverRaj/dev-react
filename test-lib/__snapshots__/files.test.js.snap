@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getFile nonexistent file in nonexistent subDir 1`] = `"File: dir does not exist"`;
+
+exports[`getFile nonexistent file in subDir 1`] = `"File: dir/file does not exist"`;
+
+exports[`getFile nonexistent file in topDir 1`] = `"File: file does not exist"`;
