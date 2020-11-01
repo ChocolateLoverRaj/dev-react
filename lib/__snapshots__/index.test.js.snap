@@ -8,6 +8,6 @@ exports[`errors bad inputDir 3`] = `"Error normalizing inputDir: TypeError: p.re
 
 exports[`errors no new 1`] = `"Class constructor DevReact cannot be invoked without 'new'"`;
 
-exports[`errors start 1`] = `[Error: this.inputDir does not exist.]`;
+exports[`errors start Access 1`] = `[Error: Error accessing this.inputDir: Error: Bad permissions.]`;
 
 exports[`errors start Not found 1`] = `[Error: this.inputDir does not exist.]`;

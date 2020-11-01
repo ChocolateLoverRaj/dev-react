@@ -29,7 +29,7 @@ const onceUnfrozen = filename => new Promise(resolve => {
 export const access = async (filename, permissions) => {
   const file = getFile(filename)
   const filePermissions = (file.canRead * constants.R_OK) | (file.canWrite * constants.W_OK)
-  if (permissions !== permissions & filePermissions) {
+  if (permissions !== (permissions & filePermissions)) {
     throw new Error('Bad permissions.')
   }
 }
