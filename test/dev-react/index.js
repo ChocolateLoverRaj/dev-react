@@ -1,12 +1,19 @@
 import { dirname } from 'dirname-filename-esm'
-import devReact from '@programmerraj/dev-react'
+import DevReact from '@programmerraj/dev-react'
 
 import { join } from 'path'
 
 const __dirname = dirname(import.meta)
 
+// TODO: make sure the inputDir is a dir and not a normal file
 const pagesPath = join(__dirname, './pages/')
 
-const outputPath = join(__dirname, './dev/')
+const devReact = new DevReact(pagesPath)
 
-devReact(pagesPath, outputPath)
+devReact.start()
+  .then(() => {
+    console.log('started')
+  })
+  .catch(e => {
+    console.log('Error', e)
+  })
