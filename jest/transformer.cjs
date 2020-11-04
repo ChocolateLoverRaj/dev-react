@@ -6,7 +6,7 @@ const mocksPath = join(__dirname, '../__mocks__')
 
 module.exports = {
   process (src, filename) {
-    const transformer = path => mocks.has(path)
+    const transformer = path => mocks.has(path) && filename !== join(mocksPath, mocks.get(path))
       ? relative(dirname(filename), join(mocksPath, mocks.get(path)))
       : path
 

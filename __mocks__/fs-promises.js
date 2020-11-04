@@ -1,5 +1,6 @@
 // Mocker for fs/promises
-import files from '../test-lib/files.js'
+import { NormalFile, reset, unlinkFile, setFile, getFile, Dir } from '../test-lib/files.js'
+import { constants } from './fs.js'
 import EventEmitter from 'eventemitter3'
 
 export const _frozen = new Set()
@@ -7,7 +8,7 @@ export const _errorFiles = new Set()
 export const _reset = () => {
   _frozen.clear()
   _errorFiles.clear()
-  files.clear()
+  reset()
 }
 
 export const _mock = new EventEmitter()
@@ -25,12 +26,40 @@ const onceUnfrozen = filename => new Promise(resolve => {
   _mock.on('unfreeze', handler)
 })
 
+export const access = async (filename, permissions) => {
+  const file = getFile(filename)
+  const filePermissions = (file.canRead * constants.R_OK) | (file.canWrite * constants.W_OK)
+  if (permissions !== (permissions & filePermissions)) {
+    throw new Error('Bad permissions.')
+  }
+}
+
+class Stats {
+  constructor (file) {
+    this.file = file
+  }
+
+  isDirectory () {
+    return this.file instanceof Dir
+  }
+}
+
+export const stat = async filename => {
+  const file = getFile(filename)
+  if (!file.canRead) {
+    const error = new Error('Cannot access file.')
+    error.code = 'EACCES'
+    throw error
+  }
+  return new Stats(getFile(filename))
+}
+
 export const writeFile = async (filename, content) => {
   if (_errorFiles.has(filename)) {
     throw new Error('Error writing file.')
   }
   const write = () => {
-    files.set(filename, content)
+    setFile(filename, new NormalFile(content))
     _mock.emit('wrote', filename, content)
   }
   if (_frozen.has(filename)) {
@@ -45,10 +74,5 @@ export const unlink = async filename => {
   if (_errorFiles.has(filename)) {
     throw new Error('Error unlinking file.')
   }
-  if (!files.has(filename)) {
-    const err = new Error('Error unlinking file. File doesn\'t exist.')
-    err.code = 'ENOENT'
-    throw err
-  }
-  files.delete(filename)
+  unlinkFile(filename)
 }

@@ -1,7 +1,10 @@
 // Mocker for fs
-import files from '../test-lib/files.js'
+import { getFile } from '../test-lib/files.js'
 import tick from '../test-lib/tick.js'
 import { Readable, PassThrough } from 'stream'
+
+// Real fs stuff
+export { constants } from 'fs'
 
 export const _readStreamErrorFiles = new Set()
 
@@ -17,9 +20,5 @@ export const createReadStream = path => {
     })
     return stream
   }
-  if (files.has(path)) {
-    return Readable.from(files.get(path).split(''))
-  } else {
-    throw new Error('File doesn\'t exist')
-  }
+  return Readable.from(getFile(path).content.split(''))
 }
