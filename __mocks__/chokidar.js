@@ -1,17 +1,15 @@
 // Mocker for chokidar
 import EventEmitter from 'eventemitter3'
+import sinon from 'sinon'
 
 const chokidar = {}
 
 class FSWatcher extends EventEmitter {
   constructor () {
     super()
-    
   }
 }
 
-chokidar.watch = jest.fn()
-
-chokidar.watch.mockImplementation(() => new FSWatcher())
+chokidar.watch = sinon.fake(() => new FSWatcher())
 
 export default chokidar
