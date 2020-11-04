@@ -1,7 +1,7 @@
 /* global afterEach, test, expect, describe */
 
-import { access, writeFile, unlink, _frozen, _errorFiles, _reset, _mock } from './fs-promises.js'
-import { reset, getFile, setFile, NormalFile } from '../test-lib/files.js'
+import { access, stat, writeFile, unlink, _frozen, _errorFiles, _reset, _mock } from './fs-promises.js'
+import { reset, getFile, setFile, NormalFile, Dir } from '../test-lib/files.js'
 import tick from '../test-lib/tick.js'
 import noResolve from '../test-lib/no-resolve.js'
 import { constants } from './fs'
@@ -28,6 +28,29 @@ describe('access', () => {
     file.canWrite = false
     setFile('file', file)
     await expect(access(file, constants.R_OK | constants.W_OK)).rejects.toMatchSnapshot()
+  })
+})
+
+describe('stat', () => {
+  test('ENOENT', async () => {
+    expect(stat('file')).rejects.toMatchSnapshot()
+  })
+
+  test('EACCES', async () => {
+    const dir = new Dir()
+    dir.canRead = false
+    setFile('dir', dir)
+    expect(stat('dir')).rejects.toMatchSnapshot()
+  })
+
+  test('file', async () => {
+    setFile('file', new NormalFile('hi'))
+    expect((await stat('file')).isDirectory()).toBe(false)
+  })
+
+  test('dir', async () => {
+    setFile('dir', new Dir())
+    expect((await stat('dir')).isDirectory()).toBe(true)
   })
 })
 

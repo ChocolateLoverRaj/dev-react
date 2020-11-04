@@ -1,5 +1,5 @@
 // Mocker for fs/promises
-import { NormalFile, reset, unlinkFile, setFile, getFile } from '../test-lib/files.js'
+import { NormalFile, reset, unlinkFile, setFile, getFile, Dir } from '../test-lib/files.js'
 import { constants } from './fs.js'
 import EventEmitter from 'eventemitter3'
 
@@ -32,6 +32,26 @@ export const access = async (filename, permissions) => {
   if (permissions !== (permissions & filePermissions)) {
     throw new Error('Bad permissions.')
   }
+}
+
+class Stats {
+  constructor (file) {
+    this.file = file
+  }
+
+  isDirectory () {
+    return this.file instanceof Dir
+  }
+}
+
+export const stat = async filename => {
+  const file = getFile(filename)
+  if (!file.canRead) {
+    const error = new Error('Cannot access file.')
+    error.code = 'EACCES'
+    throw error
+  }
+  return new Stats(getFile(filename))
 }
 
 export const writeFile = async (filename, content) => {

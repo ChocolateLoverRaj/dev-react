@@ -9,3 +9,7 @@ exports[`ENOENT 1`] = `[Error: File: file does not exist]`;
 exports[`access ENOENT 1`] = `[Error: File: file does not exist]`;
 
 exports[`access Read and Write 1`] = `[TypeError: path.split is not a function]`;
+
+exports[`stat EACCES 1`] = `[Error: Cannot access file.]`;
+
+exports[`stat ENOENT 1`] = `[Error: File: file does not exist]`;
