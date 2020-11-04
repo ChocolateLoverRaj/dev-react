@@ -4,11 +4,7 @@ import sinon from 'sinon'
 
 const chokidar = {}
 
-class FSWatcher extends EventEmitter {
-  constructor () {
-    super()
-  }
-}
+class FSWatcher extends EventEmitter { }
 
 chokidar.watch = sinon.fake(() => new FSWatcher())
 

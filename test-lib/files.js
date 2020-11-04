@@ -35,7 +35,7 @@ export const reset = () => {
 export const getFile = path => {
   let file = topDir
   const filenames = path.split('/')
-  let fileTree = []
+  const fileTree = []
   for (const filename of filenames) {
     fileTree.push(filename)
     if (file.files.has(filename)) {
@@ -50,7 +50,7 @@ export const getFile = path => {
 export const setFile = (path, fileToSet) => {
   let dir = topDir
   const filenames = path.split('/')
-  let fileTree = []
+  const fileTree = []
   for (const filename of filenames) {
     fileTree.push(filename)
     if (fileTree.length === filenames.length) {
@@ -68,7 +68,7 @@ export const setFile = (path, fileToSet) => {
 export const unlinkFile = path => {
   let file = topDir
   const filenames = path.split('/')
-  let fileTree = []
+  const fileTree = []
   for (const filename of filenames) {
     fileTree.push(filename)
     if (file.files.has(filename)) {
