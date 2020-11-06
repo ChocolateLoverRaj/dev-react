@@ -38,20 +38,14 @@
   },
   "homepage": "https://github.com/ChocolateLoverRaj/dev-react#readme",
   "devDependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.12.1",
     "dirname-filename-esm": "^1.0.2",
     "jest": "^26.5.2",
-    "rollup": "^2.32.1",
     "sinon": "^9.2.1",
     "standard": "^14.3.4"
   },
   "dependencies": {
     "@babel/core": "^7.11.6",
-    "@babel/preset-react": "^7.10.4",
-    "babel-plugin-list-imports": "^1.0.1",
     "chokidar": "^3.4.2",
-    "eventemitter3": "^4.0.7",
-    "fs-extra": "^9.0.1",
-    "react": "^16.13.1"
+    "eventemitter3": "^4.0.7"
   }
 }
