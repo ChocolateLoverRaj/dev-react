@@ -7,6 +7,7 @@ declare class DevReact {
   server: Application
 
   watch(): Promise<void>
+  unwatch(): Promise<void>
 }
 
 export default DevReact
