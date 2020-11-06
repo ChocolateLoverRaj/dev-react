@@ -15,11 +15,11 @@ module.exports = {
         if (basename(fileDir) !== '__mocks__') {
           const file = join(fileDir, path)
           if (!filename.endsWith('.test.js') && mockFiles.has(file)) {
-            return relative(fileDir, join(dirname(file), './__mocks__/', basename(file)))
+            const relativePath = relative(fileDir, join(dirname(file), './__mocks__/', basename(file)))
+            return relativePath.startsWith('.') ? relativePath : `.${relativePath}`
           }
         }
-      }
-      else if (mocks.modules.has(path)) {
+      } else if (mocks.modules.has(path)) {
         const replaceFile = join(mocksPath, mocks.modules.get(path))
         if (filename !== replaceFile) {
           return relative(dirname(filename), replaceFile)
