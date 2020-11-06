@@ -9,3 +9,5 @@ declare class Refresher {
   run(func: promiseFunc): void
   refresh(func: promiseFunc): void
 }
+
+export default Refresher
