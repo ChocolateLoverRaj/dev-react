@@ -12,9 +12,11 @@ module.exports = {
     const transformer = path => {
       if (path.startsWith('.')) {
         const fileDir = dirname(filename)
-        const file = join(fileDir, path)
-        if (!filename.endsWith('.test.js') && mockFiles.has(file)) {
-          return relative(fileDir, join(dirname(file), '../__mocks__/', basename(file)))
+        if (basename(fileDir) !== '__mocks__') {
+          const file = join(fileDir, path)
+          if (!filename.endsWith('.test.js') && mockFiles.has(file)) {
+            return relative(fileDir, join(dirname(file), '../__mocks__/', basename(file)))
+          }
         }
       }
       else if (mocks.modules.has(path)) {

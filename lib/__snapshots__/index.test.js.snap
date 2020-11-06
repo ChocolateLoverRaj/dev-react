@@ -1,11 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`errors bad inputDir 1`] = `"Error normalizing inputDir: TypeError: Cannot read property 'replace' of undefined"`;
-
-exports[`errors bad inputDir 2`] = `"Error normalizing inputDir: TypeError: p.replace is not a function"`;
-
-exports[`errors bad inputDir 3`] = `"Error normalizing inputDir: TypeError: p.replace is not a function"`;
-
 exports[`errors no new 1`] = `"Class constructor DevReact cannot be invoked without 'new'"`;
 
 exports[`errors start Access 1`] = `[Error: Cannot access this.inputDir: Error: Cannot access file.]`;
