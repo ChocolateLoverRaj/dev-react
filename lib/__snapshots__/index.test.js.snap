@@ -2,6 +2,6 @@
 
 exports[`errors no new 1`] = `"Class constructor DevReact cannot be invoked without 'new'"`;
 
-exports[`errors start Access 1`] = `[Error: Cannot access this.inputDir: Error: Cannot access file.]`;
+exports[`errors watch Access 1`] = `[Error: Cannot access this.inputDir: Error: Cannot access file.]`;
 
-exports[`errors start Not found 1`] = `[Error: this.inputDir does not exist.]`;
+exports[`errors watch Not found 1`] = `[Error: this.inputDir does not exist.]`;
