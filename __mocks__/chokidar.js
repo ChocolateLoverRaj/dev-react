@@ -4,7 +4,9 @@ import sinon from 'sinon'
 
 const chokidar = {}
 
-class FSWatcher extends EventEmitter { }
+export class FSWatcher extends EventEmitter { };
+
+FSWatcher.prototype.close = sinon.fake(() => Promise.resolve())
 
 chokidar.watch = sinon.fake(() => new FSWatcher())
 
