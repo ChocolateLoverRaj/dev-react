@@ -10,9 +10,6 @@ const pagesPath = join(__dirname, './pages/')
 const devReact = new DevReact(pagesPath)
 
 devReact.watch()
-  .then(() => {
-    console.log('started')
-  })
   .catch(e => {
     console.log('Error', e)
   })
