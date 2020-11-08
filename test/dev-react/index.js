@@ -10,7 +10,3 @@ const pagesPath = join(__dirname, './pages/')
 const devReact = new DevReact(pagesPath)
 
 devReact.watch()
-
-setTimeout(() => {
-  devReact.unwatch()
-}, 1000)
