@@ -35,7 +35,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14]
+        node-version: [14.15.0]
 
     steps:
     - name: GitHub Actions Checkout
