@@ -1,5 +1,6 @@
 import EventEmitter from 'eventemitter3'
 import { ReadStream } from 'fs'
+import { Readable } from 'stream'
 
 declare namespace FileOutput {
   declare class OutdatedError extends Error {
@@ -24,7 +25,8 @@ declare class FileOutput {
   buildPromise?: Promise<string>
 
   update(builder: (emitter: EventEmitter<Events>) => Promise<string>): Promise<void>
-
+  read(): Readable | ReadStream
+  destroy(): Promise<void>
 }
 
 export default FileOutput
