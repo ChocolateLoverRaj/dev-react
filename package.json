@@ -53,6 +53,6 @@
     "chokidar": "^3.4.2",
     "eventemitter3": "^4.0.7",
     "express": "^4.17.1",
-    "strip-ansi": "^6.0.0"
+    "slice-ansi": "^4.0.0"
   }
 }
