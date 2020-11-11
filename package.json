@@ -53,6 +53,7 @@
     "chokidar": "^3.4.2",
     "eventemitter3": "^4.0.7",
     "express": "^4.17.1",
+    "fs-extra": "^9.0.1",
     "slice-ansi": "^4.0.0"
   }
 }
