@@ -13,4 +13,8 @@ const devReact = new DevReact({
   outputDir: devPath
 })
 
+setTimeout(() => {
+  devReact.unwatch()
+}, 3000)
+
 devReact.watch()
