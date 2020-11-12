@@ -14,7 +14,7 @@ const devReact = new DevReact({
 })
 
 setTimeout(() => {
-  devReact.unwatch()
+  devReact.stop()
 }, 3000)
 
-devReact.watch()
+devReact.start()
