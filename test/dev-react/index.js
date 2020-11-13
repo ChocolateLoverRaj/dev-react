@@ -1,3 +1,5 @@
+import 'leaked-handles'
+
 import { dirname } from 'dirname-filename-esm'
 import DevReact from '@programmerraj/dev-react'
 
