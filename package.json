@@ -15,8 +15,7 @@
     "lint": "standard",
     "lint:fix": "standard --fix",
     "start": "node --experimental-import-meta-resolve test/dev-react/index.js",
-    "start:dev": "nodemon --experimental-import-meta-resolve test/dev-react/index.js",
-    "start:current-dev": "nodemon --experimental-import-meta-resolve lib/tasks/t"
+    "start:dev": "nodemon --experimental-import-meta-resolve test/dev-react/index.js"
   },
   "repository": {
     "type": "git",

@@ -1,16 +1,13 @@
 import Refresher from './refresher'
 
-type lines = Array<string>
-
 declare class Display {
   refresher: Refresher
-  lines: lines
-  cursorX: number
+  lines: Array<string>
   cursorY: number
+  lastLine: number
 
-  moveCursorX(x: number): Promise<void>
   moveCursorY(y: number): Promise<void>
-  update(lines: lines): Promise<void>
+  update(lines: Array<string>): Promise<void>
   close(): Promise<void>
 }
 
