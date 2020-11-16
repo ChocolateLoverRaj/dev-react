@@ -14,7 +14,8 @@
     "test:actions": "npm run test:ci & npm run lint",
     "lint": "standard",
     "lint:fix": "standard --fix",
-    "start": "node --experimental-import-meta-resolve test/dev-react/index.js"
+    "start": "node --experimental-import-meta-resolve test/dev-react/index.js",
+    "start:dev": "nodemon --experimental-import-meta-resolve test/dev-react/index.js"
   },
   "repository": {
     "type": "git",
@@ -40,14 +41,19 @@
   "devDependencies": {
     "dirname-filename-esm": "^1.0.2",
     "jest": "^26.5.2",
+    "leaked-handles": "^5.2.0",
+    "nodemon": "^2.0.6",
     "sinon": "^9.2.1",
     "standard": "^14.3.4",
     "supertest": "^6.0.1"
   },
   "dependencies": {
     "@babel/core": "^7.11.6",
+    "chalk": "^4.1.0",
     "chokidar": "^3.4.2",
     "eventemitter3": "^4.0.7",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "fs-extra": "^9.0.1",
+    "slice-ansi": "^4.0.0"
   }
 }
