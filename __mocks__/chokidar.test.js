@@ -14,3 +14,9 @@ test('FSWatcher.prototype.close', () => {
   watcher.close(...args)
   expect(FSWatcher.prototype.close.calledOnceWith(...args)).toBe(true)
 })
+
+test('_reset', () => {
+  chokidar.watch().close()
+  expect(chokidar.watch.notCalled).toBe(true)
+  expect(FSWatcher.prototype.close.notCalled).toBe(true)
+})
