@@ -4,7 +4,8 @@ module.exports = {
     .set('fs/promises', 'fs-promises.js')
     .set('chokidar', 'chokidar.js')
     .set('chalk', 'chalk.js')
-    .set('eventemitter3', 'eventemitter3.js'),
+    .set('eventemitter3', 'eventemitter3.js')
+    .set('slice-ansi', 'slice-ansi.js'),
   files: new Set()
     .add('lib/normalize.js')
     .add('lib/tasks/addons/addon.js')
