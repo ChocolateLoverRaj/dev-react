@@ -10,4 +10,5 @@ module.exports = {
     .add('lib/normalize.js')
     .add('lib/tasks/addons/addon.js')
     .add('lib/tasks/addons/text.js')
+    .add('lib/tasks/addons/concat.js')
 }
