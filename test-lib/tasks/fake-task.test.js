@@ -1,5 +1,5 @@
 import getFakeTask from './fake-task.js'
-import EventEmitter from '../../__mocks__/eventemitter3.js'
+import EventEmitter from 'eventemitter3'
 
 test('getLines', () => {
   const lines = ['a', 'b']

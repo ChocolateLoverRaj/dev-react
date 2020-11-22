@@ -1,5 +1,5 @@
 import sinon from 'sinon'
-import EventEmitter from '../../__mocks__/eventemitter3.js'
+import EventEmitter from 'eventemitter3'
 
 const getFakeTask = lines => ({
   getLines: sinon.fake(() => lines),

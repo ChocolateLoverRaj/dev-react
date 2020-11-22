@@ -1,5 +1,5 @@
 import getFakeAddon from './fake-addon.js'
-import EventEmitter from '../../__mocks__/eventemitter3.js'
+import EventEmitter from 'eventemitter3'
 
 test('getLines', () => {
   expect(getFakeAddon('text').getText()).toStrictEqual('text')
