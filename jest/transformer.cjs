@@ -19,7 +19,7 @@ module.exports = {
             return relativePath.startsWith('.') ? relativePath : `./${relativePath}`
           }
         }
-      } else if (mocks.modules.has(path)) {
+      } else if (mocks.modules.has(path) && !filename.endsWith('.test.js')) {
         const replaceFile = join(mocksPath, mocks.modules.get(path))
         if (filename !== replaceFile) {
           return relative(dirname(filename), replaceFile)
