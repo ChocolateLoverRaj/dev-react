@@ -5,4 +5,5 @@ module.exports = {
     .set('chokidar', 'chokidar.js'),
   files: new Set()
     .add('lib/normalize.js')
+    .add('lib/tasks/display.js')
 }
