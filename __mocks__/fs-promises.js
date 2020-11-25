@@ -76,3 +76,20 @@ export const unlink = async filename => {
   }
   unlinkFile(filename)
 }
+
+export const readdir = async (path, options = { withFileTypes: false }) => {
+  const files = getFile(path).files
+  if (options.withFileTypes) {
+    return [...files].map(([name, file]) => ({
+      name,
+      isDirectory () {
+        return file instanceof Dir
+      }
+    }))
+  }
+  return [...files.keys()]
+}
+
+export const mkdir = async path => {
+  setFile(path, new Dir())
+}

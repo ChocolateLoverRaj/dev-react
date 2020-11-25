@@ -1,6 +1,17 @@
 /* global afterEach, test, expect, describe */
 
-import { access, stat, writeFile, unlink, _frozen, _errorFiles, _reset, _mock } from './fs-promises.js'
+import {
+  access,
+  stat,
+  writeFile,
+  unlink,
+  readdir,
+  mkdir,
+  _frozen,
+  _errorFiles,
+  _reset,
+  _mock
+} from './fs-promises.js'
 import { reset, getFile, setFile, NormalFile, Dir } from '../test-lib/files.js'
 import tick from '../test-lib/tick.js'
 import noResolve from '../test-lib/no-resolve.js'
@@ -8,8 +19,8 @@ import { constants } from './fs'
 
 afterEach(() => {
   reset()
+  _reset()
 })
-afterEach(_reset)
 
 describe('access', () => {
   test('ENOENT', async () => {
@@ -63,6 +74,31 @@ test('unlink', async () => {
   setFile('file', new NormalFile('something'))
   await unlink('file')
   expect(() => { getFile('file') }).toThrowError()
+})
+
+describe('readdir', () => {
+  test('normal', async () => {
+    setFile('dir', new Dir())
+    setFile('dir/subDir', new Dir())
+    setFile('dir/file.txt', new NormalFile())
+    await expect(readdir('dir')).resolves.toStrictEqual(['subDir', 'file.txt'])
+  })
+
+  test('file types', async () => {
+    setFile('dir', new Dir())
+    setFile('dir/subDir', new Dir())
+    setFile('dir/file.txt', new NormalFile())
+    const files = await readdir('dir', { withFileTypes: true })
+    expect(files[0].name).toBe('subDir')
+    expect(files[0].isDirectory()).toBe(true)
+    expect(files[1].name).toBe('file.txt')
+    expect(files[1].isDirectory()).toBe(false)
+  })
+})
+
+test('mkdir', async () => {
+  await mkdir('dir')
+  expect(getFile('dir')).toBeInstanceOf(Dir)
 })
 
 test('freezing', async () => {
