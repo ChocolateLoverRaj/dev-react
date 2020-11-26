@@ -2,6 +2,7 @@ import EventEmitter from 'eventemitter3'
 import { SinonSpy } from 'sinon'
 
 export declare function _reset(): void
+export declare function _failClose(): void
 
 export declare class FSWatcher extends EventEmitter {
   close: SinonSpy<Array<unknown>, Promise<undefined>>

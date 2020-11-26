@@ -6,11 +6,16 @@ const chokidar = {}
 
 export class FSWatcher extends EventEmitter { };
 
-FSWatcher.prototype.close = sinon.fake(() => Promise.resolve())
+let failClose = false
+export const _failClose = () => {
+  failClose = true
+}
+FSWatcher.prototype.close = sinon.fake(() => failClose ? Promise.reject() : Promise.resolve())
 
 chokidar.watch = sinon.fake(() => new FSWatcher())
 
 export const _reset = () => {
+  failClose = false
   FSWatcher.prototype.close.resetHistory()
   chokidar.watch.resetHistory()
 }

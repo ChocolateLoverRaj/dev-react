@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`constructor createDir fail 1`] = `
+Array [
+  "[94m📁 /page[39m",
+  "[91m  Create dir[39m",
+]
+`;
+
+exports[`constructor createDir success 1`] = `
+Array [
+  "[94m📁 /page[39m",
+  "[32m  Create dir[39m",
+]
+`;
+
+exports[`constructor initial task 1`] = `
+Array [
+  "[94m📁 /page[39m",
+  "[93m  Create dir[39m",
+]
+`;
+
+exports[`destroy all success 1`] = `
+Array [
+  "[94m📁 /page[39m",
+  "[32m  Remove dir[39m",
+  "[32m  Close chokidar[39m",
+]
+`;
+
+exports[`destroy close chokidar fail 1`] = `
+Array [
+  "[94m📁 /page[39m",
+  "[32m  Remove dir[39m",
+  "[91m  Close chokidar[39m",
+]
+`;
+
+exports[`destroy initial task 1`] = `
+Array [
+  "[94m📁 /page[39m",
+  "[93m  Remove dir[39m",
+  "[93m  Close chokidar[39m",
+]
+`;
+
+exports[`destroy removeDir fail 1`] = `
+Array [
+  "[94m📁 /page[39m",
+  "[91m  Remove dir[39m",
+  "[32m  Close chokidar[39m",
+]
+`;
