@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`destroy 1`] = `Array []`;
+
+exports[`empty 1`] = `
+Array [
+  "[93mPrepare output dir[39m",
+  "[32m   Read output dir[39m",
+  "[93m   Delete unnecessary files[39m",
+]
+`;
+
+exports[`empty 2`] = `
+Array [
+  "[32mPrepare output dir[39m",
+  "[32m   Read output dir[39m",
+  "[32m   Delete unnecessary files[39m",
+]
+`;
+
+exports[`initial task 1`] = `
+Array [
+  "[93mPrepare output dir[39m",
+  "[93m   Read output dir[39m",
+  "[93m   Delete unnecessary files[39m",
+]
+`;

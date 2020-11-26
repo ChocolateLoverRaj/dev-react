@@ -1,4 +1,7 @@
 import EventEmitter from 'eventemitter3'
+import { SinonSpy } from 'sinon'
+
+type SpiesOn<F> = SinonSpy<Parameters<F>, ReturnType<F>>
 
 declare class Stats {
   constructor(file: string)
@@ -25,4 +28,5 @@ export declare function writeFile(filename: string, content: string): Promise<vo
 export declare function unlink(filename: string): Promise<void>
 export declare function readdir(path: string, options?: { withFileTypes: false }): Promise<string>
 export declare function readdir(path: string, options: { withFileTypes: true }): Promise<Dirent>
-export declare function mkdir(path: string): Promise<void>
+export declare const mkdir: SpiesOn<(path: string) => Promise<void>>
+export declare const rmdir: SpiesOn<(path: string) => Promise<void>>

@@ -1,3 +1,5 @@
+import normalize from '../lib/normalize.js'
+
 export class File {
   constructor () {
     this.canRead = true
@@ -48,6 +50,7 @@ export const getFile = path => {
 }
 
 export const setFile = (path, fileToSet) => {
+  path = normalize(path)
   let dir = topDir
   const filenames = path.split('/')
   const fileTree = []
@@ -66,6 +69,7 @@ export const setFile = (path, fileToSet) => {
 }
 
 export const unlinkFile = path => {
+  path = normalize(path)
   let file = topDir
   const filenames = path.split('/')
   const fileTree = []
