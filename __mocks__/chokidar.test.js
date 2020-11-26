@@ -8,15 +8,15 @@ test('chokidar.watch', () => {
   expect(chokidar.watch.calledOnceWith(...args)).toBe(true)
 })
 
-test('FSWatcher.prototype.close', () => {
-  const args = ['a', 'b']
+test('FSWatcher.prototype.close', async () => {
   const watcher = chokidar.watch()
-  watcher.close(...args)
-  expect(FSWatcher.prototype.close.calledOnceWith(...args)).toBe(true)
+  await watcher.close()
+  expect(FSWatcher.prototype.close.calledOnce).toBe(true)
 })
 
-test('_reset', () => {
-  chokidar.watch().close()
-  expect(chokidar.watch.notCalled).toBe(true)
+test('_reset', async () => {
+  await chokidar.watch().close()
+  _reset()
   expect(FSWatcher.prototype.close.notCalled).toBe(true)
+  expect(chokidar.watch.notCalled).toBe(true)
 })
