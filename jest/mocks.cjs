@@ -6,6 +6,9 @@ module.exports = {
     .set('fs-extra', 'fs-extra.js'),
   files: new Set()
     .add('lib/normalize.js')
-    .add('lib/tasks/display.js')
     .add('lib/read-create-dir.js')
+    .add('lib/output-dir.js')
+    .add('lib/dirs.js')
+    .add('lib/tasks/display.js')
+    .add('lib/tasks/display-task.js')
 }

@@ -9,24 +9,18 @@ import SortSetTask from './tasks/tasks/sort-set'
 import AutoStateAddon from './tasks/extra/auto-state-addon'
 import NameTask from './tasks/extra/name-task'
 import ColorAddon from './tasks/addons/color'
-import EventEmitter from 'eventemitter3'
 import DisplayTask from './tasks/display-task'
+import OutputDir from './output-dir'
 import { FSWatcher } from 'chokidar'
 import { Application } from 'express'
-
-interface Events {
-  start(): void
-  started(): void
-  stop(): void
-  stopped(): void
-}
 
 declare class DevReact {
   constructor(options: { inputDir: string, outputDir: string })
 
   inputDir: string
   outputDir: string
-  emptyDir: Dirs
+  emptyDir: OutputDir
+  dirs: Dirs
   closeChokidarAddon: StateAddon<TextAddon>
   closeChokidar: HideTask<CustomTask<StateAddon<TextAddon>>>
   warningsBadDir: MapTask<string, CustomTask<ColorAddon<TextAddon>>>
@@ -38,8 +32,6 @@ declare class DevReact {
     MapTask<string, CustomTask<ColorAddon<TextAddon>>>
   >
   server: Application
-  stopping: boolean
-  emitter: EventEmitter<Events>
   displayTask?: DisplayTask<ConcatTask<
     HideTask<ConcatTask<CustomTask<AutoStateAddon<TextAddon, StateAddon<TextAddon>> | StateAddon<TextAddon>>>> |
     SortSetTask<NameTask<string, ConcatTask<CustomTask<ColorAddon<TextAddon>> | HideTask<CustomTask<StateAddon<TextAddon>>>>>> |
