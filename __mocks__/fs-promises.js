@@ -1,5 +1,5 @@
 // Mocker for fs/promises
-import { NormalFile, reset, unlinkFile, setFile, getFile, Dir, topDir } from '../test-lib/files.js'
+import { NormalFile, reset, unlinkFile, setFile, getFile, Dir } from '../test-lib/files.js'
 import { constants } from './fs.js'
 import EventEmitter from 'eventemitter3'
 import sinon from 'sinon'

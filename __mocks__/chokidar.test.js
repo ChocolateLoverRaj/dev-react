@@ -1,3 +1,5 @@
+/* global afterEach, test, expect */
+
 import chokidar, { FSWatcher, _reset, _failClose } from './chokidar.js'
 
 afterEach(_reset)

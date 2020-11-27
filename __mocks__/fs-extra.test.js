@@ -1,3 +1,5 @@
+/* global afterEach, describe, test, expect */
+
 import fsExtra, { _reset } from './fs-extra.js'
 import { setFile, Dir, NormalFile, topDir } from '../test-lib/files.js'
 

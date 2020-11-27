@@ -10,7 +10,7 @@ let failClose = false
 export const _failClose = () => {
   failClose = true
 }
-FSWatcher.prototype.close = sinon.fake(() => failClose ? Promise.reject() : Promise.resolve())
+FSWatcher.prototype.close = sinon.fake(() => failClose ? Promise.reject(new Error()) : Promise.resolve())
 
 chokidar.watch = sinon.fake(() => new FSWatcher())
 

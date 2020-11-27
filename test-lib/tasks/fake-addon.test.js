@@ -1,3 +1,5 @@
+/* global test, expect */
+
 import getFakeAddon from './fake-addon.js'
 import EventEmitter from 'eventemitter3'
 

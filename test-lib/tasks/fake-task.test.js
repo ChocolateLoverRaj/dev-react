@@ -1,3 +1,5 @@
+/* global test, expect */
+
 import getFakeTask from './fake-task.js'
 import EventEmitter from 'eventemitter3'
 
