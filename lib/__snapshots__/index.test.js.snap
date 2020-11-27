@@ -1,7 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`errors no new 1`] = `"Class constructor DevReact cannot be invoked without 'new'"`;
+exports[`start checks inputDir EACCES 1`] = `[Error: Cannot access this.inputDir: Error: Cannot access file.]`;
 
-exports[`errors watch Access 1`] = `[Error: Cannot access this.inputDir: Error: Cannot access file.]`;
+exports[`start checks inputDir ENOENT 1`] = `[Error: this.inputDir does not exist.]`;
 
-exports[`errors watch Not found 1`] = `[Error: this.inputDir does not exist.]`;
+exports[`start checks inputDir not dir 1`] = `[Error: this.inputDir is not a directory.]`;
+
+exports[`start watches add 1`] = `
+Array [
+  "[93m⚠ Unrecognized File: file[39m",
+]
+`;
+
+exports[`start watches addDir bad dir 1`] = `
+Array [
+  "[93m⚠ Unrecognized Special Dir: _bad[39m",
+]
+`;
+
+exports[`stop close chokidar complete 1`] = `
+Array [
+  "[32mClose chokidar[39m",
+]
+`;
+
+exports[`stop close chokidar failed 1`] = `
+Array [
+  "[91mClose chokidar[39m",
+]
+`;
+
+exports[`stop close chokidar shows task 1`] = `
+Array [
+  "[93mClose chokidar[39m",
+]
+`;

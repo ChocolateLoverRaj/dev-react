@@ -2,14 +2,10 @@
 import { NormalFile, reset, unlinkFile, setFile, getFile, Dir } from '../test-lib/files.js'
 import { constants } from './fs.js'
 import EventEmitter from 'eventemitter3'
+import sinon from 'sinon'
 
 export const _frozen = new Set()
 export const _errorFiles = new Set()
-export const _reset = () => {
-  _frozen.clear()
-  _errorFiles.clear()
-  reset()
-}
 
 export const _mock = new EventEmitter()
   .on('unfreeze', filename => {
@@ -75,4 +71,33 @@ export const unlink = async filename => {
     throw new Error('Error unlinking file.')
   }
   unlinkFile(filename)
+}
+
+export const readdir = async (path, options = { withFileTypes: false }) => {
+  const files = getFile(path).files
+  if (options.withFileTypes) {
+    return [...files].map(([name, file]) => ({
+      name,
+      isDirectory () {
+        return file instanceof Dir
+      }
+    }))
+  }
+  return [...files.keys()]
+}
+
+export const mkdir = sinon.spy(async path => {
+  setFile(path, new Dir())
+})
+
+export const rmdir = sinon.spy(async path => {
+  unlinkFile(path)
+})
+
+export const _reset = () => {
+  _frozen.clear()
+  _errorFiles.clear()
+  reset()
+  mkdir.resetHistory()
+  rmdir.resetHistory()
 }
