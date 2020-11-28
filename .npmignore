@@ -1,0 +1,20 @@
+# Node Modules
+node_modules/
+
+# GitHub
+.github/
+
+# Vscode
+.vscode/
+
+# Node version
+.node-version
+
+# Testing related stuff
+jest/
+jest.config.js
+test/
+test-lib/
+*.test.js
+**/__snapshots__/
+**/__mocks__/

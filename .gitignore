@@ -1,6 +1,3 @@
-# Compiled to cjs
-_cjs/**/*.js
-
 # Dev
 test/dev-react/dev/
 
