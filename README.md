@@ -17,15 +17,18 @@ This package uses [ECMAScript Modules](https://nodejs.org/api/esm.html)
 This example shows how to start watching a dir.
 
 ### File Structure
-- a-folder/
+- an-input-folder/
   - _common/
   - _index/
   - page/
   - page subpage/
   - ~~a normal file~~
   - ~~_dir/~~
+- output-folder (auto generated)
 
-A folder is required. It can be named anything. Inside that folder you can create a folder for each page. 
+An input folder is required. It can be named anything. Inside that folder you can create a folder for each page.
+
+A path to an output folder is also required. The output folder will be created if it doesn't exist.
 
 The names of the pages will reflect the path they are served on. For example, a folder called `page` will be served on `/page`. 
 
@@ -43,21 +46,26 @@ Any normal files in the pages folder will be ignored, and a warning will be show
 ```javascript
 import DevReact from '@programmerraj/dev-react'
 
-const dev = new DevReact('a-folder')
-dev.watch()
+const dev = new DevReact({
+  inputDir: 'an-input-folder',
+  outputDir: 'output-folder'
+})
+dev.start()
 ```
 
 ## API
 The main file default exports the `DevReact` class.
 
-### constructor(inputDir)
-- inputDir: Path to a directory with pages.
+### constructor(options)
+- options
+  - inputDir: Path to a directory with pages.
+  - outputDir: Path which output files get saved to.
 ### prototype
-- [watch](#watch)
-- [unwatch](#unwatch)
-### watch()
-Start watching the `inputDir`. For more info about `inputDir` go to [file structure](#File-Structure).
+- [start](#start)
+- [stop](#stop)
+### start()
+Start watching the `inputDir`. Also starts displaying build tasks. For more info about `inputDir` go to [file structure](#File-Structure).
 - return: A promise which resolves `undefined`
-### unwatch()
-Stops watching the `inputDir`.
+### stop()
+Stops watching the `inputDir`. Also stops displaying build tasks.
 - return: A promise which resolves `undefined`
