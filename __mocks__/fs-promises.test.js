@@ -15,7 +15,7 @@ import {
 } from './fs-promises.js'
 import { reset, getFile, setFile, NormalFile, Dir, topDir } from '../test-lib/files.js'
 import tick from '../test-lib/tick.js'
-import noResolve from '../test-lib/no-resolve.js'
+import noResolve from 'no-resolve'
 import { constants } from './fs'
 
 afterEach(() => {
