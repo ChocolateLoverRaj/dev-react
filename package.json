@@ -44,6 +44,7 @@
     "leaked-handles": "^5.2.0",
     "no-resolve": "^1.0.0",
     "nodemon": "^2.0.6",
+    "p-immediate": "^3.1.0",
     "sinon": "^9.2.1",
     "standard": "^14.3.4",
     "supertest": "^6.0.1"

@@ -14,7 +14,7 @@ import {
   _mock
 } from './fs-promises.js'
 import { reset, getFile, setFile, NormalFile, Dir, topDir } from '../test-lib/files.js'
-import tick from '../test-lib/tick.js'
+import tick from 'p-immediate'
 import noResolve from 'no-resolve'
 import { constants } from './fs'
 

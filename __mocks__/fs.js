@@ -1,6 +1,6 @@
 // Mocker for fs
 import { getFile } from '../test-lib/files.js'
-import tick from '../test-lib/tick.js'
+import tick from 'p-immediate'
 import { Readable, PassThrough } from 'stream'
 
 // Real fs stuff
