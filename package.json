@@ -42,6 +42,7 @@
     "dirname-filename-esm": "^1.0.2",
     "jest": "^26.5.2",
     "leaked-handles": "^5.2.0",
+    "no-resolve": "^1.0.0",
     "nodemon": "^2.0.6",
     "sinon": "^9.2.1",
     "standard": "^14.3.4",
