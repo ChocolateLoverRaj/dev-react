@@ -41,6 +41,7 @@
   "devDependencies": {
     "dirname-filename-esm": "^1.0.2",
     "jest": "^26.5.2",
+    "jest-mock-imports": "^1.1.1",
     "leaked-handles": "^5.2.0",
     "no-resolve": "^1.0.0",
     "nodemon": "^2.0.6",
