@@ -1,49 +1,16 @@
-const mocks = require('./mocks.cjs')
-const { transformSync } = require('@babel/core')
-const { join, relative, dirname, basename } = require('path')
+const { mock } = require('jest-mock-imports')
 
-const mocksPath = join(__dirname, '../__mocks__')
-const basePath = join(__dirname, '../')
-
-const mockFiles = new Set([...mocks.files].map(path => join(basePath, path)))
-
-module.exports = {
-  process (src, filename) {
-    const transformer = path => {
-      if (path.startsWith('.')) {
-        const fileDir = dirname(filename)
-        if (basename(fileDir) !== '__mocks__') {
-          const file = join(fileDir, path)
-          if (!filename.endsWith('.test.js') && mockFiles.has(file)) {
-            const relativePath = relative(fileDir, join(dirname(file), '__mocks__/', basename(file)))
-            return relativePath.startsWith('.') ? relativePath : `./${relativePath}`
-          }
-        }
-      } else if (mocks.modules.has(path) && !filename.endsWith('.test.js')) {
-        const replaceFile = join(mocksPath, mocks.modules.get(path))
-        if (filename !== replaceFile) {
-          return relative(dirname(filename), replaceFile)
-        }
-      }
-      return path
-    }
-
-    return transformSync(src, {
-      plugins: [{
-        visitor: {
-          ImportDeclaration (path) {
-            path.node.source.value = transformer(path.node.source.value)
-          },
-          ExportNamedDeclaration (path) {
-            if (path.node.source) {
-              path.node.source.value = transformer(path.node.source.value)
-            }
-          },
-          ExportAllDeclaration (path) {
-            path.node.source.value = transformer(path.node.source.value)
-          }
-        }
-      }]
-    })
-  }
-}
+exports.process = mock({
+  modules: new Map()
+    .set('fs', 'fs.js')
+    .set('fs/promises', 'fs-promises.js')
+    .set('chokidar', 'chokidar.js')
+    .set('fs-extra', 'fs-extra.js'),
+  files: new Set()
+    .add('lib/normalize.js')
+    .add('lib/read-create-dir.js')
+    .add('lib/output-dir.js')
+    .add('lib/dirs.js')
+    .add('lib/tasks/display.js')
+    .add('lib/tasks/display-task.js')
+})
