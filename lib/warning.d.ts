@@ -1,6 +1,8 @@
-import CustomTask from './tasks/tasks/custom.js'
-import TextAddon from './tasks/addons/text.js'
-import ColorAddon from './tasks/addons/color.js'
+import {
+  CustomTask,
+  TextAddon,
+  ColorAddon
+} from 'display-task'
 
 declare function warning(warning: string, filename: string): CustomTask<ColorAddon<TextAddon>>
 

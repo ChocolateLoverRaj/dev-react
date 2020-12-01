@@ -5,7 +5,8 @@ exports.process = mock({
     .set('fs', 'fs.js')
     .set('fs/promises', 'fs-promises.js')
     .set('chokidar', 'chokidar.js')
-    .set('fs-extra', 'fs-extra.js'),
+    .set('fs-extra', 'fs-extra.js')
+    .set('display-task', 'display-task.js'),
   files: new Set()
     .add('lib/normalize.js')
     .add('lib/read-create-dir.js')

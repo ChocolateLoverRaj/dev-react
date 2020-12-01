@@ -1,5 +1,7 @@
-import CustomTask from '../tasks/tasks/custom'
-import TextAddon from '../tasks/addons/text'
+import {
+  CustomTask,
+  TextAddon
+} from 'display-task'
 import { SinonSpy } from 'sinon'
 
 export declare function _reset(): void

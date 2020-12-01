@@ -1,9 +1,11 @@
-import ConcatTask from './tasks/tasks/concat'
-import CustomTask from './tasks/tasks/custom'
-import HideTask from './tasks/extra/hide-task'
-import TextAddon from './tasks/addons/text'
-import StateAddon from './tasks/extra/state-addon'
-import AutoStateAddon from './tasks/extra/auto-state-addon'
+import {
+  ConcatTask,
+  CustomTask,
+  HideTask,
+  TextAddon,
+  StateAddon,
+  AutoStateAddon
+} from 'display-task'
 
 declare class OutputDir {
   constructor(path: string)
