@@ -1,11 +1,13 @@
 import OutputDir from './output-dir'
-import CustomTask from './tasks/tasks/custom'
-import ConcatTask from './tasks/tasks/concat'
-import HideTask from './tasks/extra/hide-task'
-import NameTask from './tasks/extra/name-task'
-import ColorAddon from './tasks/addons/color'
-import TextAddon from './tasks/addons/text'
-import StateAddon from './tasks/extra/state-addon'
+import {
+  ConcatTask,
+  CustomTask,
+  HideTask,
+  NameTask,
+  TextAddon,
+  ColorAddon,
+  StateAddon,
+} from 'display-task'
 import { FSWatcher } from 'chokidar'
 
 declare class Dir {
