@@ -1,7 +1,5 @@
-import 'leaked-handles'
-
 import { dirname } from 'dirname-filename-esm'
-import DevReact from '@programmerraj/dev-react'
+import devReact from '@programmerraj/dev-react'
 
 import { join } from 'path'
 
@@ -10,13 +8,16 @@ const __dirname = dirname(import.meta)
 const pagesPath = join(__dirname, './pages/')
 const devPath = join(__dirname, './dev/')
 
-const devReact = new DevReact({
+const watch = true
+
+const dev = devReact({
   inputDir: pagesPath,
-  outputDir: devPath
+  outputDir: devPath,
+  watch: watch
 })
 
-setTimeout(() => {
-  devReact.stop()
-}, 3000)
-
-devReact.start()
+if (watch) {
+  setTimeout(() => {
+    dev.stop()
+  }, 5000)
+}
