@@ -1,8 +1,9 @@
 # Node Modules
 node_modules/
 
-# GitHub
+# Workflows
 .github/
+freeze.json
 
 # Vscode
 .vscode/
