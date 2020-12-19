@@ -1,0 +1,13 @@
+name: Main
+on:
+  push:
+    branches: [main]
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ChocolateLoverRaj/npm-version/merge@2.0.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          bases: 'major,minor,patch'
