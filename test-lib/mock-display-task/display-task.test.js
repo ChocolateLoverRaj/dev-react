@@ -1,4 +1,4 @@
-/* global afterEach, test, expect */
+/* eslint-env jest */
 
 import DisplayTask, { _reset } from './display-task.js'
 

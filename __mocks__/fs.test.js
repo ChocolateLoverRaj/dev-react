@@ -1,4 +1,4 @@
-/* global afterEach, test, expect */
+/* eslint-env jest */
 
 import { createReadStream, _readStreamErrorFiles, _reset } from './fs.js'
 import { reset, setFile, NormalFile } from '../test-lib/files.js'

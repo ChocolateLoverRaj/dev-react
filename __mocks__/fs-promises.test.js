@@ -1,4 +1,4 @@
-/* global afterEach, test, expect, describe */
+/* eslint-env jest */
 
 import {
   access,

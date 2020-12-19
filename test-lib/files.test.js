@@ -1,4 +1,4 @@
-/* global afterEach, describe, test, expect */
+/* eslint-env jest */
 
 import { File, NormalFile, Dir, topDir, getFile, reset, setFile, unlinkFile } from './files.js'
 

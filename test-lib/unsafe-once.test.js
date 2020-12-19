@@ -1,4 +1,4 @@
-/* global test, expect */
+/* eslint-env jest */
 
 import unsafeOnce from './unsafe-once.js'
 import { once, EventEmitter } from 'events'
