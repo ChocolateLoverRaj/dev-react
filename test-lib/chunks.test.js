@@ -1,4 +1,4 @@
-/* global test, expect */
+/* eslint-env jest */
 
 import chunks from './chunks.js'
 import { Readable } from 'stream'
