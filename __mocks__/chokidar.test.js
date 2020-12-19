@@ -1,4 +1,4 @@
-/* global afterEach, test, expect */
+/* eslint-env jest */
 
 import chokidar, { FSWatcher, _reset, _failClose } from './chokidar.js'
 

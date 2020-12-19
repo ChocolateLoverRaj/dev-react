@@ -1,4 +1,4 @@
-/* global afterEach, describe, test, expect */
+/* eslint-env jest */
 
 import fsExtra, { _reset } from './fs-extra.js'
 import { setFile, Dir, NormalFile, topDir } from '../test-lib/files.js'
