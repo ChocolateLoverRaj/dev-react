@@ -8,16 +8,17 @@ const __dirname = dirname(import.meta)
 const pagesPath = join(__dirname, './pages/')
 const devPath = join(__dirname, './dev/')
 
-const watch = true
+const watch = false
 
 const dev = devReact({
   inputDir: pagesPath,
   outputDir: devPath,
-  watch: watch
+  watch: watch,
+  folderStructure: 'github'
 })
 
 if (watch) {
   setTimeout(() => {
     dev.stop()
-  }, 5000)
+  }, 60000)
 }
