@@ -1,3 +1,6 @@
+> [!CAUTION]
+> When I was making this I did not know about existing React frameworks. Once I learned about them, I stopped making this, which is basically a React framework. I'm keeping this as an archive. I would recommend using [Next.js](https://nextjs.org/). That is what I've used. That's what I would recommend my past self to use instead of making this project.
+
 # dev-react
 Develop React components and websites.
 
